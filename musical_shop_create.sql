@@ -17,13 +17,13 @@ create table if not exists GENRES_ARTISTS (
 create table if not exists MUSICAL_ALBUMS (
 		album_id serial primary key,
 		title VARCHAR(60) not null,
-		release_year integer
+		release_year integer NOT NULL CHECK (release_year > 1700)
 );
 
 create table if not exists TRACKS (
 		track_id SERIAL primary key,
 		track_name VARCHAR(50),
-		duration_sec integer,
+		duration_sec integer NOT NULL CHECK (duration_sec > 0),
 		album_id integer not null references MUSICAL_ALBUMS(album_id)
 );
 
